@@ -16,6 +16,8 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             DataTables Advanced Tables
+                            <button id='regBtn' type="button" class="btn btn-xs pull-right">Register
+					New Board</button>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -33,7 +35,7 @@
                                 <c:forEach items="${list}" var="board">
                                     <tr class="odd gradeX">
                                         <td>${board.bno }</td>
-                                        <td>${board.title }</td>
+                                        <td><a href='/board/get?bno=<c:out value="${board.bno}"/>'><c:out value="${board.title}"/></a></td>
                                         <td>${board.writer }</td>
                                         <td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regdate}" /></td>
 										<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.updateDate}" /></td>
@@ -72,20 +74,31 @@ $(document).ready(function() {
 	checkModal(result);
 
 	//history.replaceState({}, null, null);
+	history.replaceState({},null,null);
 
 	function checkModal(result) {
 
-		if (result === '') {
+		if (result === '' || history.state) {
 			return;
 		}
-
-		if (parseInt(result) > 0) {
+		
+		if (result === 'success') {
+			$(".modal-body").html(
+				"処理を終了しました。");
+			}
+		else if (parseInt(result) > 0) {
 			$(".modal-body").html(
 				"掲示物" + parseInt(result) + "番が登録されました。");
 		}
 
 		$("#myModal").modal("show");
 	}
+	
+	$("#regBtn").click(function() {
+		
+		self.location = "/board/register";	
+		
+	});
 	
 });
 

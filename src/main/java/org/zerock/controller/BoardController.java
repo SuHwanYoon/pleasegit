@@ -25,6 +25,7 @@ public class BoardController {
 	public void list(Model model) {
 		
 		log.info("list...................");
+
 		model.addAttribute("list", service.getList());
 	}
 	
@@ -44,6 +45,13 @@ public class BoardController {
 		
 		
 		return "redirect:/board/list";
+	}
+	
+	@GetMapping({"/get","/modify"})
+	public void getRead(@RequestParam("bno")long bno, Model model) {
+		
+		model.addAttribute("board", service.getRead(bno));
+		
 	}
 	
 	@PostMapping("/modify")
