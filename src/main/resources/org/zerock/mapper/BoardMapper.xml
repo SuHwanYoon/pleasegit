@@ -40,6 +40,19 @@
   where bno = #{bno}
  </update>
  
+ <select id="getListWithPaging" resultType="org.zerock.domain.BoardVO">
+  
+  <![CDATA[
+  select * from 
+  (
+  select /*+ index_desc(tbl_board pk_board) */ rownum rn, bno ,title, writer,regdate,updatedate
+  from tbl_board
+  where bno > 0 and rownum > 0 and rownum <= (#{pageNum} * #{amount})
+  )
+  where rn > (#{pageNum}-1) * #{amount}
+  ]]>
+  
+ </select>
  
  
  

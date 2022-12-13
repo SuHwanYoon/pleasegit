@@ -45,6 +45,23 @@
                             </table>
                             <!-- /.table-responsive -->
                             
+                            <h3>${pageMaker}</h3>
+                            <div class="pull-right">
+                            	<ul>
+                            		<c:forEach begin="${pageMaker.startPage }" 
+                            					end="${pageMaker.endPage }" var="num">
+                            			<li>${num }</li>
+                            		</c:forEach>
+                            	</ul>
+                            </div>
+                          </div>
+                          <!-- panel-body -->
+                        </div>
+                        <!-- panel -->
+                      </div>  
+                      
+                   </div>
+                            
 <div id="myModal" class="modal" tabindex="-1" role="dialog" >
   <div class="modal-dialog" role="document">
     <div class="modal-content">
