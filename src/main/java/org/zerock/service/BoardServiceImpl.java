@@ -57,8 +57,16 @@ public class BoardServiceImpl implements BoardService {
 
 
 	@Override
-	public List<BoardVO> getList(Criteria cri) {
+	public List<BoardVO> getList(Criteria cri) {//overide
 		// TODO Auto-generated method stub
 		return mapper.getListWithPaging(cri);
+	}
+
+
+
+	@Override
+	public int getTotal(Criteria cri) {
+		// TODO Auto-generated method stub
+		return mapper.getTotalCount(cri);
 	}
 }

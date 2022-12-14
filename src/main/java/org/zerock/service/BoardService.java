@@ -17,5 +17,7 @@ public interface BoardService {
 	
 	List<BoardVO> getList();
 	
-	List<BoardVO> getList(Criteria cri);
+	List<BoardVO> getList(Criteria cri);//overide
+	
+	int getTotal(Criteria cri);
 }
