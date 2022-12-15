@@ -10,9 +10,13 @@ import lombok.ToString;
 public class Criteria {
 	private int pageNum,amount;
 	
+	private String keyword,type;
+	
 	public Criteria() {
-		this(1,10);
+		this(1,10);// 1pageNum  &  10 amount
 	}
+	
+
 
 	public Criteria(int pageNum, int amount) {
 		super();
@@ -21,4 +25,10 @@ public class Criteria {
 	}
 	
 	
+	public String[] getTypeArr() {
+		return type == null ? new String[] {} : type.split("");
+	}
+	
 }
+
+

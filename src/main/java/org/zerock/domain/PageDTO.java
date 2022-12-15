@@ -12,7 +12,7 @@ public class PageDTO {
 	private boolean prev,next;
 	
 	private int total;
-	private Criteria cri;
+	private Criteria cri;//pageNum amount
 	
 	public PageDTO(Criteria cri, int total) {
 		this.cri = cri;

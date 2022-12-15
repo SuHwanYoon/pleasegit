@@ -65,7 +65,7 @@ $(document).ready(function() {
 		
 		e.preventDefault();
 		
-		var operation = $(this).data("oper");
+		var operation = $(this).data("oper");//data-oper
 		
 		console.log(operation);
 		

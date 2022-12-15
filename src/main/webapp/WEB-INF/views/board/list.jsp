@@ -44,6 +44,21 @@
                                 </tbody>
                             </table>
                             <!-- /.table-responsive -->
+                            <form action="/board/list" id="searchForm" method="get">
+                            	<select name="type">
+                            		<option value="" ${pageMaker.cri.type == null? "selected" : "" }>-----</option>
+                            		<option value="T" ${pageMaker.cri.type eq "T"? "selected" : "" }>Title</option>
+                            		<option value="C" ${pageMaker.cri.type eq "C"? "selected" : "" }>Content</option>
+                            		<option value="W" ${pageMaker.cri.type eq "W"? "selected" : "" }>Writer</option>
+                            		<option value="TC" ${pageMaker.cri.type eq "TC"? "selected" : "" }>Title+Content</option>
+                            		<option value="TCW" ${pageMaker.cri.type eq "TCW"? "selected" : "" }>Title+Content+Writer</option>
+                            	</select>
+                            	<input type="text" name="keyword" value="${pageMaker.cri.keyword }">
+                            	<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
+                            	<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
+                            	<button class="btn btn-default">Search</button>
+                            </form>
+                            
                             
                             <h3>${pageMaker}</h3>
                            <div class="pull-right" >
@@ -52,7 +67,7 @@
                            	   	 	<li class="page-item">
 				      					<a class="page-link" href="${pageMaker.startPage -1 }" tabindex="-1">Previous</a>
 				    				</li>
-				    			</c:if> 
+				    			</c:if> <!--/list -> begin=1 , end=10  | begin=11 end=20 -->
                             		 <c:forEach begin="${pageMaker.startPage }" 
                             					end="${pageMaker.endPage }" var="num">
                             			 <li class="page-item ${pageMaker.cri.pageNum == num? "active" : "" }">
@@ -69,6 +84,8 @@
                         	<form id='actionForm' action="/board/list" method='get'>
 							  <input type='hidden' name='pageNum' value = '${pageMaker.cri.pageNum}'>
 							  <input type='hidden' name='amount' value = '${pageMaker.cri.amount}'>
+							  <input type='hidden' name='type' value = '${pageMaker.cri.type}'>
+							  <input type='hidden' name='keyword' value = '${pageMaker.cri.keyword}'>
 							</form>
                         	
                         
@@ -140,7 +157,7 @@ $(document).ready(function() {
     $(".page-link").on("click", function(e) {
 			e.preventDefault();
 			
-			var tagetPage = $(this).attr("href");//this-> .page-link
+			var tagetPage = $(this).attr("href");//this-> .page-link    href->${num}
 			
 			console.log(tagetPage);
 			
@@ -148,16 +165,30 @@ $(document).ready(function() {
 			actionForm.submit();
     });
 	
-    $(".move").on("click",function(e){
+    $(".move").on("click",function(e){//read
     	e.preventDefault();
     	
-    	var targetBno = $(this).attr("href");
+    	var targetBno = $(this).attr("href");//bno
     	console.log(targetBno);    	
     	actionForm.append("<input type='hidden' name='bno' value='" + targetBno + "'>")
-    	actionForm.attr("action","/board/get").submit();
+    	//actionForm.append("<input type='hidden' name='bno' value='" + targetBno + "'>")
+    	actionForm.attr("action","/board/get").submit();// list (x) get(o)
     	
     	
     })
+    
+    
+    var searchForm = $("#searchForm");
+    
+   $("#searchForm button").on("click",function(e){
+	   
+	   e.preventDefault();
+	   console.log("..................click");
+	   
+	   searchForm.find("input[name='pageNum']").val(1);
+	   
+	   searchForm.submit();
+   });
     
 });
 

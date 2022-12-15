@@ -103,7 +103,20 @@ public class BoardMapperTests {
 		log.info(pageDTO);
 	}
 	
-	
+	@Test
+	public void testSearchPaging() {
+		// 1 ~10
+		
+		
+		Criteria cri = new Criteria();
+		//cri.setType("TCW");
+		//cri.setKeyword("Test");
+		
+		
+		List<BoardVO> list = boardMapper.getListWithPaging(cri);
+		
+		list.forEach(b -> log.info(b));
+	}
 	
 	
 	
