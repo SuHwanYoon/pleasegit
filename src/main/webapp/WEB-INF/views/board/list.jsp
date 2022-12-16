@@ -154,6 +154,7 @@ $(document).ready(function() {
 	
     var actionForm = $("#actionForm");
     
+    
     $(".page-link").on("click", function(e) {
 			e.preventDefault();
 			
@@ -165,6 +166,8 @@ $(document).ready(function() {
 			actionForm.submit();
     });
 	
+
+    
     $(".move").on("click",function(e){//read
     	e.preventDefault();
     	
@@ -185,7 +188,7 @@ $(document).ready(function() {
 	   e.preventDefault();
 	   console.log("..................click");
 	   
-	   searchForm.find("input[name='pageNum']").val(1);
+	   searchForm.find("input[name='pageNum']").val(1);//after search pageNum -> 1
 	   
 	   searchForm.submit();
    });

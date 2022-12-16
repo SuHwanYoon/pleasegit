@@ -41,7 +41,7 @@ public class BoardController {
 		
 		model.addAttribute("list", service.getList(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, service.getTotal(cri)));//pageNum+amount ,total 
-	}
+	}																			//type,keyword
 
 	
 	

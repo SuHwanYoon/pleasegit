@@ -109,7 +109,7 @@ public class BoardMapperTests {
 		
 		
 		Criteria cri = new Criteria();
-		//cri.setType("TCW");
+		cri.setType("TCW");
 		//cri.setKeyword("Test");
 		
 		
